@@ -16,9 +16,9 @@ class FcmHelper {
     try {
       // initialize fcm and firebase core
       await Firebase.initializeApp(
-        // TODO: uncomment this line if you connected to firebase via cli
-        //options: DefaultFirebaseOptions.currentPlatform,
-      );
+          // TODO: uncomment this line if you connected to firebase via cli
+          //options: DefaultFirebaseOptions.currentPlatform,
+          );
 
       // initialize firebase
       messaging = FirebaseMessaging.instance;
@@ -62,10 +62,10 @@ class FcmHelper {
   static Future<void> _generateFcmToken() async {
     try {
       var token = await messaging.getToken();
-      if(token != null){
+      if (token != null) {
         MySharedPref.setFcmToken(token);
         _sendFcmTokenToServer();
-      }else {
+      } else {
         // retry generating token
         await Future.delayed(const Duration(seconds: 5));
         _generateFcmToken();
@@ -77,8 +77,8 @@ class FcmHelper {
 
   /// this method will be triggered when the app generate fcm
   /// token successfully
-  static _sendFcmTokenToServer(){
-    var token = MySharedPref.getFcmToken();
+  static _sendFcmTokenToServer() {
+    // var token = MySharedPref.getFcmToken();
     // TODO SEND FCM TOKEN TO SERVER
   }
 
@@ -91,7 +91,8 @@ class FcmHelper {
       id: 1,
       title: message.notification?.title ?? 'Tittle',
       body: message.notification?.body ?? 'Body',
-      payload: message.data.cast(), // pass payload to the notification card so you can use it (when user click on notification)
+      payload: message.data
+          .cast(), // pass payload to the notification card so you can use it (when user click on notification)
     );
   }
 
@@ -101,8 +102,8 @@ class FcmHelper {
       id: 1,
       title: message.notification?.title ?? 'Tittle',
       body: message.notification?.body ?? 'Body',
-      payload: message.data.cast(), // pass payload to the notification card so you can use it (when user click on notification)
+      payload: message.data
+          .cast(), // pass payload to the notification card so you can use it (when user click on notification)
     );
   }
 }
-

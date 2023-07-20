@@ -133,10 +133,6 @@ class TestWidget extends GetWidget<TestController> {
           children: [
             FloatingActionButton(
               key: const ValueKey('general_notifications_fap'),
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
               backgroundColor: Colors.purple,
               onPressed: () async {
                 await AwesomeNotificationsHelper.showNotification(
@@ -150,16 +146,16 @@ class TestWidget extends GetWidget<TestController> {
                       NotificationActionButton(key: 'cancel', label: 'Cancel'),
                     ]);
               },
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(
               width: 20,
             ),
             FloatingActionButton(
               key: const ValueKey('chat_notifications_fap'),
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
               backgroundColor: Colors.blue,
               onPressed: () async {
                 await AwesomeNotificationsHelper.showNotification(
@@ -175,6 +171,10 @@ class TestWidget extends GetWidget<TestController> {
                       NotificationActionButton(key: 'cancel', label: 'Cancel'),
                     ]);
               },
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
             ),
           ],
         ),

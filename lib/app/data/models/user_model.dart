@@ -22,10 +22,11 @@ class UserModel {
   // so you u can store this object in local db (hive)
   UserModel();
 
-  UserModel.fromData({required this.age, required this.phoneNumber,required this.username});
+  UserModel.fromData(
+      {required this.age, required this.phoneNumber, required this.username});
 
   @override
-  String toString(){
-    return 'Username => ${username}\nAge => ${age}\nPhone number => ${phoneNumber}';
+  String toString() {
+    return 'Username => $username\nAge => $age\nPhone number => $phoneNumber';
   }
 }

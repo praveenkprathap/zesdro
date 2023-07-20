@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:zesdro/firebase_options.dart';
 import 'package:zesdro/utils/awesome_notifications_helper.dart';
 
 import 'app/data/local/my_hive.dart';
@@ -15,7 +17,9 @@ import 'utils/fcm_helper.dart';
 Future<void> main() async {
   // wait for bindings
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   // initialize local db (hive) and register our custom adapters
   await MyHive.init(registerAdapters: (hive) {
     hive.registerAdapter(UserModelAdapter());
@@ -42,7 +46,7 @@ Future<void> main() async {
       builder: (context, widget) {
         return GetMaterialApp(
           // todo add your app name
-          title: "GetXSkeleton",
+          title: "Zesdro",
           useInheritedMediaQuery: true,
           debugShowCheckedModeBanner: false,
           builder: (context, widget) {
@@ -50,8 +54,8 @@ Future<void> main() async {
             return Theme(
               data: MyTheme.getThemeData(isLight: themeIsLight),
               child: MediaQuery(
-                // prevent font from scalling (some people use big/small device fonts)
-                // but we want our app font to still the same and dont get affected
+                // prevent font from scaling (some people use big/small device fonts)
+                // but we want our app font to still the same and don't get affected
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
                 child: widget!,
               ),

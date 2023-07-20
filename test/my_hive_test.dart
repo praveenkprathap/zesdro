@@ -5,6 +5,7 @@ import 'package:zesdro/app/data/models/user_model.dart';
 import 'dart:io';
 import 'dart:math';
 
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart' as path;
 
 // temp path to initialize hive somewhere

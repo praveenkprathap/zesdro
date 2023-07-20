@@ -20,7 +20,7 @@ class MyStyles {
       AppBarTheme(
         elevation: 0,
         titleTextStyle:
-            getTextTheme(isLightTheme: isLightTheme).bodyText1!.copyWith(
+            getTextTheme(isLightTheme: isLightTheme).bodyLarge!.copyWith(
                   color: Colors.white,
                   fontSize: MyFonts.appBarTittleSize,
                 ),
@@ -35,56 +35,56 @@ class MyStyles {
 
   ///text theme
   static TextTheme getTextTheme({required bool isLightTheme}) => TextTheme(
-        button: MyFonts.buttonTextStyle
-            .copyWith(fontSize: MyFonts.buttonTextSize),
-        bodyText1: (MyFonts.bodyTextStyle).copyWith(
+        labelLarge:
+            MyFonts.buttonTextStyle.copyWith(fontSize: MyFonts.buttonTextSize),
+        bodyLarge: (MyFonts.bodyTextStyle).copyWith(
             fontWeight: FontWeight.bold,
             fontSize: MyFonts.body1TextSize,
             color: isLightTheme
                 ? LightThemeColors.bodyTextColor
                 : DarkThemeColors.bodyTextColor),
-        bodyText2: (MyFonts.bodyTextStyle).copyWith(
+        bodyMedium: (MyFonts.bodyTextStyle).copyWith(
             fontSize: MyFonts.body2TextSize,
             color: isLightTheme
                 ? LightThemeColors.bodyTextColor
                 : DarkThemeColors.bodyTextColor),
-        headline1: (MyFonts.headlineTextStyle).copyWith(
+        displayLarge: (MyFonts.headlineTextStyle).copyWith(
             fontSize: MyFonts.headline1TextSize,
             fontWeight: FontWeight.bold,
             color: isLightTheme
                 ? LightThemeColors.headlinesTextColor
                 : DarkThemeColors.headlinesTextColor),
-        headline2: (MyFonts.headlineTextStyle).copyWith(
+        displayMedium: (MyFonts.headlineTextStyle).copyWith(
             fontSize: MyFonts.headline2TextSize,
             fontWeight: FontWeight.bold,
             color: isLightTheme
                 ? LightThemeColors.headlinesTextColor
                 : DarkThemeColors.headlinesTextColor),
-        headline3: (MyFonts.headlineTextStyle).copyWith(
+        displaySmall: (MyFonts.headlineTextStyle).copyWith(
             fontSize: MyFonts.headline3TextSize,
             fontWeight: FontWeight.bold,
             color: isLightTheme
                 ? LightThemeColors.headlinesTextColor
                 : DarkThemeColors.headlinesTextColor),
-        headline4: (MyFonts.headlineTextStyle).copyWith(
+        headlineMedium: (MyFonts.headlineTextStyle).copyWith(
             fontSize: MyFonts.headline4TextSize,
             fontWeight: FontWeight.bold,
             color: isLightTheme
                 ? LightThemeColors.headlinesTextColor
                 : DarkThemeColors.headlinesTextColor),
-        headline5: (MyFonts.headlineTextStyle).copyWith(
+        headlineSmall: (MyFonts.headlineTextStyle).copyWith(
             fontSize: MyFonts.headline5TextSize,
             fontWeight: FontWeight.bold,
             color: isLightTheme
                 ? LightThemeColors.headlinesTextColor
                 : DarkThemeColors.headlinesTextColor),
-        headline6: (MyFonts.headlineTextStyle).copyWith(
+        titleLarge: (MyFonts.headlineTextStyle).copyWith(
             fontSize: MyFonts.headline6TextSize,
             fontWeight: FontWeight.bold,
             color: isLightTheme
                 ? LightThemeColors.headlinesTextColor
                 : DarkThemeColors.headlinesTextColor),
-        caption: TextStyle(
+        bodySmall: TextStyle(
             color: isLightTheme
                 ? LightThemeColors.captionTextColor
                 : DarkThemeColors.captionTextColor,
@@ -101,7 +101,7 @@ class MyStyles {
       secondaryLabelStyle: getChipTextStyle(isLightTheme: isLightTheme),
       selectedColor: Colors.black,
       disabledColor: Colors.green,
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       secondarySelectedColor: Colors.purple,
     );
   }
@@ -161,8 +161,8 @@ class MyStyles {
             ),
           ),
           elevation: MaterialStateProperty.all(0),
-          padding:
-              MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.symmetric(vertical: 8.h)),
+          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+              EdgeInsets.symmetric(vertical: 8.h)),
           textStyle: getElevatedButtonTextStyle(isLightTheme),
           backgroundColor: MaterialStateProperty.resolveWith<Color>(
             (Set<MaterialState> states) {
