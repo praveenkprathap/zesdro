@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 // TODO add your light theme colors palette
 class LightThemeColors {
   //dark swatch
-  static const Color primaryColor = Color(0xFF84a59d);
+  static const Color primaryColor = Color(0xFF9797fc);
   static const Color accentColor = Color(0xFFD9EDE1);
 
   //APPBAR
   static const Color appBarColor = primaryColor;
 
   //SCAFFOLD
-  static const Color scaffoldBackgroundColor = Colors.white;
+  static const Color scaffoldBackgroundColor = Color(0xFFE1E1F2);
   static const Color backgroundColor = Colors.white;
   static const Color dividerColor = Color(0xff686868);
   static const Color cardColor = Color(0xfffafafa);

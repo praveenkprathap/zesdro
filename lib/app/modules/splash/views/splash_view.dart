@@ -41,7 +41,7 @@ class SplashView extends GetView<SplashController> {
                     children: [
                       const Spacer(),
                       SizedBox(
-                          height: 75,
+                          height: 100,
                           child: Image.asset("assets/images/app_icon.png")),
                       Text(
                         "ZESDRO",

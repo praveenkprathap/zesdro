@@ -10,11 +10,6 @@ import 'package:zesdro/utils/object_box_global.dart';
 
 class LoginController extends GetxController {
   UserModel? user;
-  GoogleSignIn googleSignIn = GoogleSignIn(
-    scopes: [
-      'email',
-    ],
-  );
 
   @override
   void onInit() {
@@ -23,7 +18,8 @@ class LoginController extends GetxController {
 
   Future<void> signInHandler() async {
     try {
-      GoogleSignInAccount? data = await googleSignIn.signIn();
+      GoogleSignInAccount? data =
+          await ObjectBoxSingleton.instance.googleSignIn.signIn();
       if (data != null) {
         int id =
             ObjectBoxSingleton.instance.objectBox.checkUserExist(data.email);
