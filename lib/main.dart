@@ -1,14 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:zesdro/firebase_options.dart';
 import 'package:zesdro/utils/awesome_notifications_helper.dart';
-
-import 'app/data/local/my_hive.dart';
+import 'package:zesdro/utils/db_handler.dart';
+import 'package:zesdro/utils/object_box_global.dart';
 import 'app/data/local/my_shared_pref.dart';
-import 'app/data/models/user_model.dart';
 import 'app/routes/app_pages.dart';
 import 'config/theme/my_theme.dart';
 import 'config/translations/localization_service.dart';
@@ -20,12 +19,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // initialize local db (hive) and register our custom adapters
-  await MyHive.init(registerAdapters: (hive) {
-    hive.registerAdapter(UserModelAdapter());
-    //myHive.registerAdapter(OtherAdapter());
-  });
 
+  await GetStorage.init();
+  ObjectBoxSingleton.instance.objectBox = await ObjectBox.create();
   // init shared preference
   await MySharedPref.init();
 
@@ -37,7 +33,7 @@ Future<void> main() async {
 
   runApp(
     ScreenUtilInit(
-      // todo add your (Xd / Figma) artboard size
+      // todo add your (Xd / Figma) art board size
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
@@ -45,7 +41,6 @@ Future<void> main() async {
       rebuildFactor: (old, data) => true,
       builder: (context, widget) {
         return GetMaterialApp(
-          // todo add your app name
           title: "Zesdro",
           useInheritedMediaQuery: true,
           debugShowCheckedModeBanner: false,

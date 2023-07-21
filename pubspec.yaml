@@ -17,8 +17,6 @@ dependencies:
   http_mock_adapter: # mocking dio for testing
   pretty_dio_logger: # for dio api logging and debugging
 
-  hive:  # local database (SQFlite replacement)
-  hive_flutter: # make it easy to use hive (no need for path provider)
   shared_preferences: # shared preferences persistence key value store
 
   firebase_core: ^2.15.0  # to initialize firebase services
@@ -27,26 +25,32 @@ dependencies:
 
   flutter_launcher_icons: # change app icon
   change_app_package_name: # change package name
-  rename_app: # rename app
   circular_reveal_animation: ^2.0.1
 
   firebase_auth: ^4.7.1
   google_sign_in: ^6.1.4
+  lottie: ^2.5.0
+  objectbox: ^2.1.0
 
   flutter: 
     sdk: flutter
+  sign_in_button: ^3.2.0
+  objectbox_flutter_libs: any
+  get_storage: ^2.1.1
+  path_provider: ^2.0.15 
+  image_editor_plus: ^0.2.5
 
 dev_dependencies:
   mockito:
   flutter_lints:
-  build_runner:  # generate dart files
-  hive_generator: # generate hive files
+  build_runner: ^2.4.6  # generate dart files
 
   integration_test:
     sdk: flutter
 
   flutter_test: 
     sdk: flutter
+  objectbox_generator: any
 
 flutter_icons:
   android: true
@@ -60,6 +64,7 @@ flutter:
     - assets/images/
     - assets/vectors/
     - assets/fonts/
+    - assets/lottie/
 
   fonts:
     - family: Poppins

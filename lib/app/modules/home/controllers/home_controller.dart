@@ -1,47 +1,37 @@
 import 'package:get/get.dart';
-
-import '../../../../utils/constants.dart';
-import '../../../services/api_call_status.dart';
-import '../../../services/base_client.dart';
+import 'package:image_editor_plus/utils.dart';
+import 'package:zesdro/app/data/models/image_model.dart';
+import 'package:zesdro/app/routes/app_pages.dart';
+import 'package:zesdro/utils/object_box_global.dart';
+import 'package:image_editor_plus/image_editor_plus.dart';
 
 class HomeController extends GetxController {
-  // hold data coming from api
-  List<dynamic>? data;
-  // api call status
-  ApiCallStatus apiCallStatus = ApiCallStatus.holding;
-
-  // getting data from api
-  getData() async {
-    // *) perform api call
-    await BaseClient.safeApiCall(
-      Constants.todosApiUrl, // url
-      RequestType.get, // request type (get,post,delete,put)
-      onLoading: () {
-        // *) indicate loading state
-        apiCallStatus = ApiCallStatus.loading;
-        update();
-      },
-      onSuccess: (response){ // api done successfully
-        data = List.from(response.data);
-        // *) indicate success state
-        apiCallStatus = ApiCallStatus.success;
-        update();
-      },
-      // if you don't pass this method base client
-      // will automaticly handle error and show message to user
-      onError: (error){
-        // show error message to user
-        BaseClient.handleApiError(error);
-        // *) indicate error status
-        apiCallStatus = ApiCallStatus.error;
-        update();
-      },
-    );
-  }
+  var images = [].obs;
 
   @override
   void onInit() {
-    getData();
     super.onInit();
+  }
+
+  void navigateToProfilePage() {
+    Get.toNamed(Routes.PROFILE);
+  }
+
+  void gotoCreatePost() async {
+    final editedImage = await Get.to(
+      () => const ImageEditor(),
+    );
+
+    if (editedImage != null) {
+      // can post
+      final convertedImage = await ImageUtils.convert(
+        editedImage, // <-- Uint8List/path of image
+        format: 'jpg',
+        quality: 80,
+      );
+      ObjectBoxSingleton.instance.objectBox.addImage(ImageFiles(
+          fileData: convertedImage,
+          uid: ObjectBoxSingleton.instance.user!.uid));
+    }
   }
 }

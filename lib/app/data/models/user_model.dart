@@ -1,32 +1,27 @@
-// note you have to hardcode this part
-// for example => (part 'classname.g.dart');
-// class name must be in lower case
-import 'package:hive/hive.dart';
-
-// this line must be written by you
-// for example => ( part 'filename.g.dart'; )
-// FILENAME not class name and also all in lower case
-part 'user_model.g.dart';
-
-@HiveType(typeId: 1) // id must be unique
 class UserModel {
-  @HiveField(0)
-  late final String username;
-  @HiveField(1)
-  late final int age;
-  @HiveField(2)
-  late final String phoneNumber;
+  late String displayName;
+  late String email;
+  late String id;
+  late String photoURL;
+  late int uid;
 
-  // you must provide empty constructor
-  // so hive can generate(serializable) object
-  // so you u can store this object in local db (hive)
-  UserModel();
+  UserModel(this.displayName, this.email, this.id, this.photoURL, this.uid);
 
-  UserModel.fromData(
-      {required this.age, required this.phoneNumber, required this.username});
+  UserModel.fromMap(Map<String, dynamic> data) {
+    displayName = data["displayName"]!;
+    email = data["email"]!;
+    id = data["id"]!;
+    photoURL = data["photoURL"]!;
+    uid = data["uid"];
+  }
 
-  @override
-  String toString() {
-    return 'Username => $username\nAge => $age\nPhone number => $phoneNumber';
+  toMap() {
+    return {
+      "displayName": displayName,
+      "email": email,
+      "id": id,
+      "photoURL": photoURL,
+      "uid": uid
+    };
   }
 }
